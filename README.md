@@ -1,4 +1,7 @@
-express-sendfile
-================
+# Guardian font-loader test
 
-Code for the tutorial by @sevilayha: Use ExpressJS to Deliver HTML Files
+Run `applications` project in `frontend` locally on `localhost:9000`.
+
+`npm install` in this repo.
+
+`npm start` in this repo and open `localhost:8080`.
