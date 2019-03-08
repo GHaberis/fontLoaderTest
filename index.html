@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>fontLoader test</title>
+    <style>
+      .guardianFontLoader {
+        display: none;
+      }
+      .guardianEgyptianWeb {
+        font-family: 'Guardian Egyptian Web';
+      }
+      .guardianTextEgyptianWeb {
+        font-family: 'Guardian Text Egyptian Web';
+      }
+      .guardianSansWeb {
+        font-family: 'Guardian Sans Web';
+      }
+      .guardianTextSansWeb {
+        font-family: 'Guardian Text Sans Web';
+      }
+      .weight200 {
+        font-weight: 200;
+      }
+      .weight400 {
+        font-weight: 400;
+      }
+      .weight500 {
+        font-weight: 500;
+      }
+      .weight900 {
+        font-weight: 900;
+      }
+      .italic {
+        font-style: italic;
+      }
+      .demo {
+        margin: 10px;
+      }
+    </style>
+    <script type="text/javascript">
+      (function(window, document) {
+        var head = document.getElementsByTagName('head')[0];
+
+        var useFont = function(font) {
+          if (font.css) {
+            var style = document.createElement('style');
+
+            style.innerHTML = font.css;
+
+            head.appendChild(style);
+          }
+        };
+
+        var loadFonts = function() {
+          console.log('***3');
+
+          var iframe = document.createElement('iframe');
+
+          iframe.src = 'http://localhost:9000/font-loader';
+          iframe.classList = 'guardianFontLoader';
+
+          // add iframe and wait for message
+          window.addEventListener('message', function(e) {
+            if (
+              e &&
+              e.data &&
+              e.data.name &&
+              e.data.name === 'guardianFonts' &&
+              e.data.fonts &&
+              e.source === iframe.contentWindow
+            ) {
+              e.data.fonts.forEach(useFont);
+            }
+          });
+
+          document.body.appendChild(iframe);
+        };
+
+        document.addEventListener('DOMContentLoaded', loadFonts);
+      })(window, document);
+    </script>
+  </head>
+  <body>
+    <div class="demo guardianEgyptianWeb">
+      <div class="weight200">GuardianEgyptianWeb</div>
+      <div class="weight200 italic">GuardianEgyptianWeb</div>
+      <div class="weight400">GuardianEgyptianWeb</div>
+      <div class="weight400 italic">GuardianEgyptianWeb</div>
+      <div class="weight500">GuardianEgyptianWeb</div>
+      <div class="weight500 italic">GuardianEgyptianWeb</div>
+      <div class="weight900">GuardianEgyptianWeb</div>
+      <div class="weight900 italic">GuardianEgyptianWeb</div>
+    </div>
+    <div class="demo guardianTextEgyptianWeb">
+      <div class="weight200">GuardianTextEgyptianWeb</div>
+      <div class="weight200 italic">GuardianTextEgyptianWeb</div>
+      <div class="weight400">GuardianTextEgyptianWeb</div>
+      <div class="weight400 italic">GuardianTextEgyptianWeb</div>
+      <div class="weight500">GuardianTextEgyptianWeb</div>
+      <div class="weight500 italic">GuardianTextEgyptianWeb</div>
+      <div class="weight900">GuardianTextEgyptianWeb</div>
+      <div class="weight900 italic">GuardianTextEgyptianWeb</div>
+    </div>
+    <div class="demo guardianSansWeb">
+      <div class="weight200">GuardianSansWeb</div>
+      <div class="weight200 italic">GuardianSansWeb</div>
+      <div class="weight400">GuardianSansWeb</div>
+      <div class="weight400 italic">GuardianSansWeb</div>
+      <div class="weight500">GuardianSansWeb</div>
+      <div class="weight500 italic">GuardianSansWeb</div>
+      <div class="weight900">GuardianSansWeb</div>
+      <div class="weight900 italic">GuardianSansWeb</div>
+    </div>
+    <div class="demo guardianTextSansWeb">
+      <div class="weight200">GuardianTextSansWeb</div>
+      <div class="weight200 italic">GuardianTextSansWeb</div>
+      <div class="weight400">GuardianTextSansWeb</div>
+      <div class="weight400 italic">GuardianTextSansWeb</div>
+      <div class="weight500">GuardianTextSansWeb</div>
+      <div class="weight500 italic">GuardianTextSansWeb</div>
+      <div class="weight900">GuardianTextSansWeb</div>
+      <div class="weight900 italic">GuardianTextSansWeb</div>
+    </div>
+  </body>
+</html>
